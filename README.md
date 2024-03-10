@@ -64,6 +64,7 @@ Tailwind CSS
 UI Infragistics
 Json Server
 ngx-spinner
+concurrently
 Editor de Texto ou IDE: visual studio code
 Node.js e npm
 Git
