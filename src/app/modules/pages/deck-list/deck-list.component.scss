@@ -1,0 +1,19 @@
+.igx-card {
+  max-width: 320px;
+  min-width: 220px;
+  height: 280px;
+}
+
+.bg-card-img {
+  background-image: url(/assets/pikachu-in-the-rain-pokemon-thumb.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+}
+
+.delete-icon {
+  .igx-icon {
+    --tw-text-opacity: 1;
+    --color: rgb(153 27 27 / var(--tw-text-opacity));
+  }
+}

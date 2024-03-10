@@ -1,0 +1,46 @@
+<igx-tabs>
+  <igx-tab-item>
+    <igx-tab-header class="w-1/4">
+      <span igxTabHeaderLabel class="text-sm">
+        {{ pokemonType() }} ({{ selectedPokemons().length }})
+      </span>
+    </igx-tab-header>
+    <igx-tab-content class="grid gap-2 grid-cols-100px p-2 overflow-auto" [ngClass]="contentHeightClass()">
+      @for(pokemon of selectedPokemons(); track pokemon.id) {
+      <img [src]="pokemon.imageUrlHiRes" [alt]="pokemon.name" class="cursor-pointer">
+      }
+    </igx-tab-content>
+  </igx-tab-item>
+  <igx-tab-item>
+    <igx-tab-header class="w-1/4">
+      <span igxTabHeaderLabel class="text-sm">{{trainerType()}} ({{ selectedTrainers().length }})</span>
+    </igx-tab-header>
+    <igx-tab-content class="grid gap-2 grid-cols-100px p-2 overflow-auto" [ngClass]="contentHeightClass()">
+      @for(trainer of selectedTrainers(); track trainer.id) {
+      <img [src]="trainer.imageUrlHiRes" [alt]="trainer.name" class="cursor-pointer">
+      }
+    </igx-tab-content>
+  </igx-tab-item>
+  <igx-tab-item>
+    <igx-tab-header class="w-1/4">
+      <span igxTabHeaderLabel class="text-sm">{{energyType()}} ({{selectedEnergies().length}})</span>
+    </igx-tab-header>
+    <igx-tab-content class="grid gap-2 grid-cols-100px p-2 overflow-auto" [ngClass]="contentHeightClass()">
+        @for(energy of selectedEnergies(); track energy.id) {
+          <img [src]="energy.imageUrlHiRes" [alt]="energy.name" class="cursor-pointer">
+        }
+    </igx-tab-content>
+  </igx-tab-item>
+  <igx-tab-item>
+    <igx-tab-header class="w-1/4">
+      <span igxTabHeaderLabel class="text-sm">Types</span>
+    </igx-tab-header>
+    <igx-tab-content class="p-2">
+      <ul class="list-none text-slate-100">
+        @for(type of types(); track type) {
+        <li>{{type}}: {{ type | totalTypes: selectedTypes() }}</li>
+        }
+      </ul>
+    </igx-tab-content>
+  </igx-tab-item>
+</igx-tabs>

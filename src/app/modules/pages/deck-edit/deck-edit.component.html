@@ -1,0 +1,57 @@
+<div class="wrapper">
+  <div class="flex xs:flex-wrap-reverse p-2.5">
+    <div class="flex-initial overflow-auto h-99 xs:w-full sm:w-9/12 mt-1">
+      <h6 *ngIf="isLoaded()" class="sm:hidden xs:block p-2 ml-3 text-slate-100">Cards:</h6>
+      <div class="card-container sm:flex sm:flex-wrap xs:justify-center xs:grid xs:grid-cols-100px md:justify-normal gap-2">
+        @for (card of searchCard(); track card.id) {
+        <div class="img-container border-solid rounded border-2 transition-colors"
+          [ngClass]="{'border-red-800' : card.selected}">
+          <img [src]="card.imageUrl" width="188" height="155" [alt]="card.name" class="cursor-pointer flex-auto h-full"
+            (click)="toggleCard(card)">
+        </div>
+        }
+      </div>
+    </div>
+    @if(isLoaded()) {
+      <div class="flex-initial p-1 xs:w-full sm:w-3/12 sm:shadow">
+        <div class="box">
+          <igx-input-group type="search">
+            <input #searchInput igxInput placeholder="Search" [value]="search()" (input)="search.set(searchInput.value)" />
+            <igx-prefix>
+                <igx-icon>search</igx-icon>
+            </igx-prefix>
+            </igx-input-group>
+          <div class="header rounded p-1 flex bg-red-800 mt-1">
+            <div class="text-slate-100 flex-auto">
+              <input type="text" class="w-1/2 bg-transparent focus:outline-none focus:border-none text-slate-100"
+                [formControl]="deckName">
+              ({{selectedCards().length}}/60)
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <!-- <igx-icon class="text-slate-100 cursor-pointer">less-than</igx-icon> -->
+              <span class="text-slate-100 cursor-pointer" (click)="back()">Back</span>
+                <igx-icon class="text-slate-100 cursor-pointer" (click)="saveDeck()">save</igx-icon>
+            </div>
+          </div>
+            </div>
+              <app-deck-tab
+               [types]="types()"
+               [selectedTypes]="selectedTypes()"
+              [selectedTrainers]="selectedTrainers()"
+              [selectedPokemons]="selectedPokemons()"
+              [selectedEnergies]="selectedEnergies()"
+              [pokemonType]="pokemonType"
+              [trainerType]="trainerType"
+              [energyType]="energyType"
+               ></app-deck-tab>
+          </div>
+    }
+      </div>
+    </div>
+
+
+<igx-dialog #alert title="Error" [message]="message()" leftButtonLabel="OK"
+  (leftButtonSelect)="alert.close()">
+</igx-dialog>
+
+<ngx-spinner type="ball-atom"></ngx-spinner>

@@ -1,1 +1,64 @@
-/* You can add global styles to this file, and also import other style files */
+
+
+@use "igniteui-angular/theming" as *;
+@use 'igniteui-theming/sass/color/functions' as *;
+@forward 'igniteui-angular/theming';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$palette: $light-material-palette;
+$schema: $light-material-schema;
+
+$default-palette: $palette;
+
+$green-palette: palette(
+    $primary: #09f,
+    $secondary: #72da67,
+    $surface: #333,
+    $info: #1377d5,
+    $success: #4eb862,
+    $warn: #fbb13c,
+    $error: #ff134a,
+);
+
+$gray-btn-color: color($green-palette, 'gray', 800);
+
+@include core();
+@include typography($font-family: $material-typeface, $type-scale: $material-type-scale);
+@include theme($default-palette);
+
+// // CSS Reset, comment out if not required or using a different module
+@import 'minireset.css/minireset';
+
+:root {
+  --ig-h5-margin-top: 0;
+  --ig-body-1-margin-top: 0;
+  --ig-body-1-margin-bottom: 0;
+}
+
+.igx-input-group--search {
+  --component-size: var(--ig-size, 1) !important;
+}
+
+.ig-typography .igx-tabs__header-item-inner > [igxtabheaderlabel] {
+  --ig-button-font-size: .7rem;
+}
+
+.igx-overlay__content--modal {
+  li {
+    color: #000;
+  }
+  .igx-tabs {
+    height: 50vh;
+    width: 40vw;
+  }
+}
+
+body {
+  background-image: url(/assets/pikachu-in-the-rain-pokemon-thumb.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}

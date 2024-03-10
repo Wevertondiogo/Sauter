@@ -1,0 +1,63 @@
+<div class="wrapper flex flex-wrap gap-2 p-2 xs:justify-center md:justify-normal">
+  <igx-card elevated class="flex-auto cursor-pointer place-content-center" (click)="addDeck()">
+    <igx-card-content>
+      <div class="grid place-content-center">
+        <button igxButton="flat" igxRipple class="m-auto">New deck</button>
+      </div>
+    </igx-card-content>
+  </igx-card>
+  @for(deck of decks(); track deck.id) {
+    <igx-card elevated class="bg-card-img  flex-auto cursor-pointer" (click)="openDetail(deck)">
+      <igx-card-content>
+        <div class="grid text-slate-100">
+          <h6>{{deck.name}}</h6>
+        </div>
+      </igx-card-content>
+      <igx-card-actions>
+        <button igxIconButton="flat" igxRipple igxRippleCentered="true" (click)="editDeck(deck.id!, $event)">
+            <igx-icon>edit</igx-icon>
+        </button>
+        <button igxIconButton="flat" igxRipple igxRippleCentered="true" class="delete-icon text-red-800" (click)="openConfirmDialog($event, deck)">
+            <igx-icon>delete</igx-icon>
+        </button>
+    </igx-card-actions>
+    </igx-card>
+  }
+</div>
+
+<igx-dialog #dialogConfirmation title="Confirmation"
+    leftButtonLabel="Cancel"
+    (leftButtonSelect)="dialogConfirmation.close()"
+    rightButtonLabel="OK"
+    (rightButtonSelect)="removeDeck()"
+    message="Are you sure you want to delete the deck?">
+</igx-dialog>
+
+<ngx-spinner type="ball-atom"></ngx-spinner>
+
+
+<igx-dialog #dialogDetail [closeOnOutsideSelect]="true" class="dialog-detail">
+    <igx-dialog-title>
+        <div class="dialog-container">
+            <div class="dialog-title">{{currentDeck().name}} ({{selectedCards().length}}/60)</div>
+        </div>
+    </igx-dialog-title>
+
+    <app-deck-tab
+    [types]="types()"
+    [selectedTypes]="selectedTypes()"
+   [selectedTrainers]="selectedTrainers()"
+   [selectedPokemons]="selectedPokemons()"
+   [selectedEnergies]="selectedEnergies()"
+   [pokemonType]="pokemonType"
+   [trainerType]="trainerType"
+   [energyType]="energyType"
+   contentHeightClass="h-50"
+    ></app-deck-tab>
+
+    <div igxDialogActions>
+        <button igxButton (click)="dialogDetail.close()">Close</button>
+        <button igxButton (click)="editDeck(currentDeck().id!)">Edit</button>
+    </div>
+</igx-dialog>
+

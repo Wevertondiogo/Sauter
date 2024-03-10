@@ -1,0 +1,42 @@
+import { Ability } from "./ability.type";
+import { Attack } from "./attack.type";
+import { CardMarket } from "./card-market.type";
+import { Images } from "./images.type";
+import { TcgPlayer } from "./tcg-player.type";
+import { Weakness } from "./weakness.type";
+
+export type Card = {
+  id: string;
+  name: string;
+  nationalPokedexNumber: number;
+  imageUrl: string;
+  imageUrlHiRes: string;
+  types: string[];
+  supertype: string;
+  subtype: string;
+  evolvesFrom: string;
+  hp: string;
+  number: string;
+  artist: string;
+  rarity: string;
+  series: string;
+  set: string;
+  setCode: string;
+  subtypes: string[];
+  abilities: Ability[];
+  attacks: Attack[];
+  weaknesses: Weakness[];
+  retreatCost: string[];
+  convertedRetreatCost: number;
+  flavorText: string;
+  nationalPokedexNumbers: number[];
+  legalities: {
+    unlimited: string;
+    standard: string;
+    expanded: string;
+  };
+  images: Images;
+  tcgplayer: TcgPlayer;
+  cardmarket: CardMarket;
+  selected?: boolean;
+};
