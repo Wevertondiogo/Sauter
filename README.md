@@ -8,8 +8,7 @@ Execute `npm start` para iniciar um servidor de desenvolvimento. Navegue para `h
 
 ## Arquitetura
 
-Container-Presentation: 
-Neste padrão, os componentes são divididos em duas categorias principais: os componentes de Container (ou Smart) e os componentes de Presentation (ou Dumb/stateless).
+Monolito
 
 ## Funcionalidades
 
